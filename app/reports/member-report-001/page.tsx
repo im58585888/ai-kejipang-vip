@@ -5,11 +5,12 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ArrowLeft, Bookmark, Download, Share2 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
+import { AuthGate } from "@/components/auth-gate";
 
 export default function ReportPage() {
   const content = fs.readFileSync(path.join(process.cwd(), "content/member-report-001.md"), "utf8");
   return (
-    <main className="reader-page">
+    <AuthGate><main className="reader-page">
       <SiteHeader dark={false} />
       <div className="reader-progress" />
       <header className="reader-header">
@@ -24,6 +25,6 @@ export default function ReportPage() {
         <aside className="reader-aside"><b>本期內容</b><a href="#本期快速結論">快速結論</a><a href="#1-tesla--spacex--robinhood--vgt-股東與機構法人買賣追蹤">公司追蹤</a><a href="#2-重要投資人的公開持股變化">大戶持股</a><a href="#3-選擇權市場訊號觀察">選擇權訊號</a></aside>
         <article className="markdown-body"><ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown></article>
       </div>
-    </main>
+    </main></AuthGate>
   );
 }

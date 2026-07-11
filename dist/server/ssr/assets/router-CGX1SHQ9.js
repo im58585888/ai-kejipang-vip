@@ -1,5 +1,5 @@
 import { S as stripBasePath, f as isHashOnlyBrowserUrlChange, h as toSameOriginAppPath, m as toBrowserNavigationHref, w as __toESM, y as require_react } from "../index.js";
-import { a as getDomainLocaleUrl, i as addLocalePrefix, n as appendSearchParamsToUrl, r as urlQueryToSearchParams, t as addQueryParam } from "./query-lzwtyVUk.js";
+import { a as getDomainLocaleUrl, i as addLocalePrefix, n as appendSearchParamsToUrl, r as urlQueryToSearchParams, t as addQueryParam } from "./link-C7AACWvc.js";
 //#region node_modules/vinext/dist/shims/internal/router-context.js
 var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
 /**

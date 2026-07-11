@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Bookmark, ChevronDown, Download, Search } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
+import { AuthGate } from "@/components/auth-gate";
+import { MemberAccount } from "@/components/member-account";
 
 const reports = [
   { featured: true, type: "每週市場與大戶動向", date: "2026.07.05", title: "Tesla 交付創高後重挫：市場正在重新定價什麼？", desc: "從 Tesla 股東結構、SpaceX 選擇權到 Q1 13F，拆解 AI 資金的最新方向。", tags: ["TSLA", "SPCX", "HOOD", "VGT"], read: "18 分鐘" },
@@ -11,11 +13,11 @@ const reports = [
 
 export default function ReportsPage() {
   return (
-    <main className="library-page">
+    <AuthGate><main className="library-page">
       <SiteHeader dark={false} />
       <section className="library-header">
         <div><span className="section-label">會員專區</span><h1>研究報告</h1><p>所有複雜的市場資訊，都從這裡開始變清楚。</p></div>
-        <div className="member-chip"><span>VIP</span><div><b>歡迎回來，會員</b><small>方案有效至 2026.08.05</small></div></div>
+        <MemberAccount />
       </section>
       <section className="library-toolbar">
         <div className="search-box"><Search size={19} /><input aria-label="搜尋報告" placeholder="搜尋公司、ticker 或主題" /></div>
@@ -36,6 +38,6 @@ export default function ReportsPage() {
           </article>
         ))}
       </section>
-    </main>
+    </main></AuthGate>
   );
 }

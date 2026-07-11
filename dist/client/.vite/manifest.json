@@ -1,84 +1,150 @@
 {
-  "_framework-XU8gKkFC.js": {
-    "file": "assets/framework-XU8gKkFC.js",
+  "_createLucideIcon-CVLl7dIN.js": {
+    "file": "assets/createLucideIcon-CVLl7dIN.js",
+    "name": "createLucideIcon",
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "_framework-CXnKph_e.js"
+    ]
+  },
+  "_framework-CXnKph_e.js": {
+    "file": "assets/framework-CXnKph_e.js",
     "name": "framework",
     "imports": [
       "_rolldown-runtime-S-ySWqyJ.js"
     ]
   },
-  "_query-D2V9OaoK.js": {
-    "file": "assets/query-D2V9OaoK.js",
-    "name": "query"
-  },
   "_rolldown-runtime-S-ySWqyJ.js": {
     "file": "assets/rolldown-runtime-S-ySWqyJ.js",
     "name": "rolldown-runtime"
   },
+  "_supabase-BGkxDdlG.js": {
+    "file": "assets/supabase-BGkxDdlG.js",
+    "name": "supabase",
+    "imports": [
+      "virtual:vinext-app-browser-entry"
+    ]
+  },
+  "app/auth/callback/page.tsx": {
+    "file": "assets/page-ePHgx0if.js",
+    "name": "page",
+    "src": "app/auth/callback/page.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "_supabase-BGkxDdlG.js",
+      "_createLucideIcon-CVLl7dIN.js",
+      "_framework-CXnKph_e.js",
+      "node_modules/vinext/dist/shims/link.js"
+    ]
+  },
+  "app/login/page.tsx": {
+    "file": "assets/page-CWMYvBwl.js",
+    "name": "page",
+    "src": "app/login/page.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "_supabase-BGkxDdlG.js",
+      "node_modules/vinext/dist/shims/image.js",
+      "_createLucideIcon-CVLl7dIN.js",
+      "_framework-CXnKph_e.js",
+      "node_modules/vinext/dist/shims/link.js"
+    ]
+  },
+  "components/auth-gate.tsx": {
+    "file": "assets/auth-gate-DbETc5pv.js",
+    "name": "auth-gate",
+    "src": "components/auth-gate.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "virtual:vinext-app-browser-entry",
+      "_supabase-BGkxDdlG.js",
+      "_framework-CXnKph_e.js"
+    ]
+  },
+  "components/member-account.tsx": {
+    "file": "assets/member-account-riK_7X6f.js",
+    "name": "member-account",
+    "src": "components/member-account.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-S-ySWqyJ.js",
+      "_supabase-BGkxDdlG.js",
+      "node_modules/vinext/dist/shims/image.js",
+      "_createLucideIcon-CVLl7dIN.js",
+      "_framework-CXnKph_e.js"
+    ]
+  },
   "node_modules/vinext/dist/shims/image.js": {
-    "file": "assets/image-DxprlA4e.js",
+    "file": "assets/image-DVmnoWzk.js",
     "name": "image",
     "src": "node_modules/vinext/dist/shims/image.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-S-ySWqyJ.js",
-      "_framework-XU8gKkFC.js"
+      "_framework-CXnKph_e.js"
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "assets/layout-segment-context-DVEivmF8.js",
+    "file": "assets/layout-segment-context-p7DSgaNZ.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-S-ySWqyJ.js",
       "virtual:vinext-app-browser-entry",
-      "_framework-XU8gKkFC.js"
+      "_framework-CXnKph_e.js"
     ]
   },
   "node_modules/vinext/dist/shims/link.js": {
-    "file": "assets/link-DZ2hj8Qc.js",
+    "file": "assets/link-MSU0NNoH.js",
     "name": "link",
     "src": "node_modules/vinext/dist/shims/link.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-S-ySWqyJ.js",
       "virtual:vinext-app-browser-entry",
-      "_framework-XU8gKkFC.js",
-      "_query-D2V9OaoK.js"
+      "_framework-CXnKph_e.js"
     ],
     "dynamicImports": [
       "node_modules/vinext/dist/shims/router.js"
     ]
   },
   "node_modules/vinext/dist/shims/router.js": {
-    "file": "assets/router-i6chK4z8.js",
+    "file": "assets/router-DCI1inUC.js",
     "name": "router",
     "src": "node_modules/vinext/dist/shims/router.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-S-ySWqyJ.js",
       "virtual:vinext-app-browser-entry",
-      "_framework-XU8gKkFC.js",
-      "_query-D2V9OaoK.js"
+      "_framework-CXnKph_e.js",
+      "node_modules/vinext/dist/shims/link.js"
     ],
     "dynamicImports": [
-      "_framework-XU8gKkFC.js"
+      "_framework-CXnKph_e.js"
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "assets/index-CLXKZOZ7.js",
+    "file": "assets/index-DPrOX98y.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
     "imports": [
       "_rolldown-runtime-S-ySWqyJ.js",
-      "_framework-XU8gKkFC.js"
+      "_framework-CXnKph_e.js"
     ],
     "dynamicImports": [
       "node_modules/vinext/dist/shims/layout-segment-context.js",
       "virtual:vinext-app-browser-entry",
+      "components/member-account.tsx",
       "node_modules/vinext/dist/shims/image.js",
-      "node_modules/vinext/dist/shims/link.js"
+      "app/login/page.tsx",
+      "node_modules/vinext/dist/shims/link.js",
+      "components/auth-gate.tsx",
+      "app/auth/callback/page.tsx"
     ]
   }
 }

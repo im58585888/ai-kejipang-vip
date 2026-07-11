@@ -1836,7 +1836,7 @@ function createInlineScriptTag(content, nonce) {
 * LICENSE file in the root directory of this source tree.
 */
 var require_react_jsx_runtime_production = /* @__PURE__ */ __commonJSMin(((exports) => {
-	var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element");
+	var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
 	function jsxProd(type, config, maybeKey) {
 		var key = null;
 		void 0 !== maybeKey && (key = "" + maybeKey);
@@ -1854,7 +1854,9 @@ var require_react_jsx_runtime_production = /* @__PURE__ */ __commonJSMin(((expor
 			props: maybeKey
 		};
 	}
+	exports.Fragment = REACT_FRAGMENT_TYPE;
 	exports.jsx = jsxProd;
+	exports.jsxs = jsxProd;
 }));
 //#endregion
 //#region node_modules/react/jsx-runtime.js
@@ -11627,13 +11629,13 @@ function createFromReadableStream(stream, options = {}) {
 //#region \0virtual:vite-rsc/client-references
 var client_references_default = {
 	"15c18cfaeeff": async () => {
-		const m = await import("./assets/layout-segment-context-q63gLoPM.js");
+		const m = await import("./assets/layout-segment-context-Bfkypdv1.js");
 		return { get "LayoutSegmentProvider"() {
 			return m["LayoutSegmentProvider"];
 		} };
 	},
 	"593f344dc510": async () => {
-		const m = await import("./assets/error-boundary-D9y4ADuu.js");
+		const m = await import("./assets/error-boundary-Cih6hSsz.js");
 		return {
 			get "ErrorBoundary"() {
 				return m["ErrorBoundary"];
@@ -11652,6 +11654,12 @@ var client_references_default = {
 			}
 		};
 	},
+	"8b3a3dc47f25": async () => {
+		const m = await import("./assets/member-account-DAcHbJiB.js");
+		return { get "MemberAccount"() {
+			return m["MemberAccount"];
+		} };
+	},
 	"8c0f216c4604": async () => {
 		const m = await Promise.resolve().then(() => slot_exports);
 		return {
@@ -11667,13 +11675,31 @@ var client_references_default = {
 		};
 	},
 	"9fb86276be8f": async () => {
-		const m = await import("./assets/image-BkFuyx9_.js");
+		const m = await import("./assets/image-JnJlK3YQ.js");
+		return { get "default"() {
+			return m["default"];
+		} };
+	},
+	"b49ea5cf04c0": async () => {
+		const m = await import("./assets/page-UNqBY7yr.js");
 		return { get "default"() {
 			return m["default"];
 		} };
 	},
 	"c2747888630f": async () => {
-		const m = await import("./assets/link-BIMgFPbj.js");
+		const m = await import("./assets/link-C7AACWvc.js");
+		return { get "default"() {
+			return m["default"];
+		} };
+	},
+	"c55f876e4773": async () => {
+		const m = await import("./assets/auth-gate-B-KnVpbG.js");
+		return { get "AuthGate"() {
+			return m["AuthGate"];
+		} };
+	},
+	"daa03a9a6fed": async () => {
+		const m = await import("./assets/page-RH4BACPX.js");
 		return { get "default"() {
 			return m["default"];
 		} };

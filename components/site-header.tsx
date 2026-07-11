@@ -17,8 +17,8 @@ export function SiteHeader({ dark = true }: { dark?: boolean }) {
         <Link href="/#pricing">方案</Link>
       </nav>
       <div className="header-actions">
-        <Link className="login-link" href="/reports">登入</Link>
-        <Link className="nav-cta" href="/#pricing">加入 VIP <ArrowUpRight size={16} /></Link>
+        <Link className="login-link" href="/login">登入</Link>
+        <Link className="nav-cta" href="/login">加入 VIP <ArrowUpRight size={16} /></Link>
         <button className="menu-button" aria-label="開啟選單"><Menu /></button>
       </div>
     </header>
