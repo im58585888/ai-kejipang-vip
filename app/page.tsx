@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <main>
       <section className="hero">
-        <Image src="/images/rocket-hero.png" alt="火箭在夜間發射" fill priority className="hero-image" sizes="100vw" />
+        <Image src="/images/rocket-hero.png" alt="火箭在夜間發射" fill priority className="hero-image" sizes="100vw" unoptimized />
         <div className="hero-shade" />
         <SiteHeader />
         <div className="hero-copy">
@@ -68,7 +68,7 @@ export default function Home() {
 
       <section id="youtube" className="youtube-section">
         <div className="youtube-logo-wrap">
-          <Image src="/brand/ai-kejipang-logo-green.png" alt="AI 科技胖頻道 Logo" width={720} height={720} className="youtube-logo" />
+          <Image src="/brand/ai-kejipang-logo-green.png" alt="AI 科技胖頻道 Logo" width={720} height={720} className="youtube-logo" unoptimized />
         </div>
         <div className="youtube-copy">
           <span className="section-label"><Youtube size={17} /> 免費 YouTube 頻道</span>

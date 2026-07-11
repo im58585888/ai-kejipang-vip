@@ -6,7 +6,7 @@ export function SiteHeader({ dark = true }: { dark?: boolean }) {
   return (
     <header className={`site-header ${dark ? "header-dark" : "header-light"}`}>
       <Link href="/" className="brand" aria-label="AI 科技胖 VIP 首頁">
-        <Image src="/brand/ai-kejipang-logo-green.png" alt="" width={36} height={36} className="brand-logo" />
+        <Image src="/brand/ai-kejipang-logo-mark.png" alt="" width={40} height={40} className="brand-logo" unoptimized />
         <span>AI 科技胖</span>
         <b>VIP</b>
       </Link>
