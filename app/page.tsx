@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, BarChart3, Check, ChevronRight, Download, FileText, LineChart, Play, Sparkles, Youtube } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BarChart3, Check, Download, FileText, LineChart, Play, Sparkles, Youtube } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
-const tickers = [
-  ["SPCX", "SpaceX", "+2.8%"], ["TSLA", "Tesla", "+1.4%"], ["GOOG", "Alphabet", "+0.7%"],
-  ["HOOD", "Robinhood", "+3.2%"], ["UBER", "Uber", "+0.4%"], ["MSFT", "Microsoft", "+0.9%"],
+const researchDirections = [
+  { no: "01", title: "機器人", companies: [["Tesla", "tesla", ""]] },
+  { no: "02", title: "自動駕駛", companies: [["Tesla", "tesla", ""], ["SPCX", "spacex", ""], ["Google", "google", ""]] },
+  { no: "03", title: "企業級 AI", companies: [["OpenAI", "", "◎"], ["Anthropic", "anthropic", ""], ["Salesforce", "", "SF"], ["ServiceNow", "", "SN"], ["Palo Alto Networks", "paloaltonetworks", ""]] },
+  { no: "04", title: "金融科技", companies: [["Robinhood", "robinhood", ""]] },
 ];
 
 const benefits = [
@@ -37,11 +39,20 @@ export default function Home() {
       </section>
 
       <section id="signal" className="ticker-section">
-        <div className="ticker-intro"><span>核心追蹤</span><p>一個會員方案，掌握六家改變未來的公司。</p></div>
-        <div className="ticker-list">
-          {tickers.map(([ticker, name, move]) => (
-            <div className="ticker-row" key={ticker}>
-              <b>{ticker}</b><span>{name}</span><i>{move}</i><ChevronRight size={20} />
+        <div className="ticker-intro"><span>核心追蹤</span><p>一個會員，<br />掌握 4 個方向。</p></div>
+        <div className="ticker-list" aria-label="四大研究方向">
+          {researchDirections.map(({ no, title, companies }) => (
+            <div className="ticker-row" key={no}>
+              <span className="direction-no">{no}</span>
+              <h3>{title}</h3>
+              <div className="company-logos">
+                {companies.map(([name, slug, mark]) => (
+                  <span className="company-logo" key={name} title={name}>
+                    {mark ? <b className={`brand-mark brand-${name.toLowerCase()}`}>{mark}</b> : <img src={`https://cdn.simpleicons.org/${slug}/111310`} alt="" loading="lazy" />}
+                    <span>{name}</span>
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -61,7 +72,7 @@ export default function Home() {
           <div className="report-tags"><span>Tesla</span><span>SpaceX</span><span>13F</span><span>選擇權</span></div>
           <div className="report-links">
             <Link href="/reports/member-report-001" className="underlined-link">閱讀線上版本 <ArrowRight size={18} /></Link>
-            <a href="/downloads/AI科技胖會員研究報告_001_2026-07-05.pdf" download className="sample-download"><Download size={17} /> 免費下載 Sample PDF</a>
+            <a href="/api/downloads/member-report-001" className="sample-download"><Download size={17} /> 免費下載 Sample PDF</a>
           </div>
         </div>
       </section>
@@ -108,12 +119,12 @@ export default function Home() {
           <div className="price"><span>US$</span><strong>9.99</strong><small>／月</small></div>
           <ul>
             <li><Check size={18} /> 每季更新深度投研報告</li>
-            <li><Check size={18} /> 六大核心科技公司持續追蹤</li>
+            <li><Check size={18} /> 四大科技趨勢持續追蹤</li>
             <li><Check size={18} /> 每週五技術型態與 CC 報告</li>
             <li><Check size={18} /> PDF 下載與會員專屬內容</li>
           </ul>
-          <Link href="/login" className="google-button"><span className="google-g">G</span> 使用 Google 帳號加入 <ArrowRight size={18} /></Link>
-          <small>使用 Google 安全登入；付款與訂閱啟用功能即將開放。</small>
+          <Link href="/login?next=/subscribe" className="google-button"><span className="google-g">G</span> 使用 Google 帳號加入 <ArrowRight size={18} /></Link>
+          <small>使用 Google 安全登入；信用卡付款由 Stripe 加密處理。</small>
         </div>
       </section>
       <SiteFooter />
