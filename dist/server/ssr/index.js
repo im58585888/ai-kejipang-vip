@@ -1031,6 +1031,8 @@ function getLayoutSegmentContext() {
 	if (!globalState[_LAYOUT_SEGMENT_CTX_KEY]) globalState[_LAYOUT_SEGMENT_CTX_KEY] = import_react.createContext({ children: [] });
 	return globalState[_LAYOUT_SEGMENT_CTX_KEY] ?? null;
 }
+var _READONLY_SEARCH_PARAMS = Symbol("vinext.navigation.readonlySearchParams");
+var _READONLY_SEARCH_PARAMS_SOURCE = Symbol("vinext.navigation.readonlySearchParamsSource");
 var GLOBAL_ACCESSORS_KEY = Symbol.for("vinext.navigation.globalAccessors");
 var _GLOBAL_ACCESSORS_KEY = GLOBAL_ACCESSORS_KEY;
 var _GLOBAL_HYDRATION_CONTEXT_KEY = Symbol.for("vinext.navigation.clientHydrationContext");
@@ -1212,6 +1214,7 @@ function notifyNavigationListeners() {
 	if (!state) return;
 	for (const fn of state.listeners) fn();
 }
+var _cachedEmptyServerSearchParams = null;
 /**
 * Get cached pathname snapshot for useSyncExternalStore.
 * Note: Returns cached value from ClientNavigationState, not live window.location.
@@ -1222,6 +1225,21 @@ function notifyNavigationListeners() {
 */
 function getPathnameSnapshot() {
 	return getClientNavigationState()?.cachedPathname ?? "/";
+}
+var _cachedEmptyClientSearchParams = null;
+/**
+* Get cached search params snapshot for useSyncExternalStore.
+* Note: Returns cached value from ClientNavigationState, not live window.location.search.
+* The cache is updated by syncCommittedUrlStateFromLocation() after navigation commits.
+* This ensures referential stability and prevents infinite re-renders.
+* External pushState/replaceState while URL notifications are suppressed won't
+* be visible until the next commit.
+*/
+function getSearchParamsSnapshot() {
+	const cached = getClientNavigationState()?.cachedReadonlySearchParams;
+	if (cached) return cached;
+	if (_cachedEmptyClientSearchParams === null) _cachedEmptyClientSearchParams = new ReadonlyURLSearchParams();
+	return _cachedEmptyClientSearchParams;
 }
 function syncCommittedUrlStateFromLocation() {
 	const state = getClientNavigationState();
@@ -1239,6 +1257,21 @@ function syncCommittedUrlStateFromLocation() {
 		changed = true;
 	}
 	return changed;
+}
+function getServerSearchParamsSnapshot() {
+	const ctx = _getServerContext();
+	if (!ctx) {
+		if (_cachedEmptyServerSearchParams === null) _cachedEmptyServerSearchParams = new ReadonlyURLSearchParams();
+		return _cachedEmptyServerSearchParams;
+	}
+	const source = ctx.searchParams;
+	const cached = ctx[_READONLY_SEARCH_PARAMS];
+	const cachedSource = ctx[_READONLY_SEARCH_PARAMS_SOURCE];
+	if (cached && cachedSource === source) return cached;
+	const readonly = new ReadonlyURLSearchParams(source);
+	ctx[_READONLY_SEARCH_PARAMS] = readonly;
+	ctx[_READONLY_SEARCH_PARAMS_SOURCE] = source;
+	return readonly;
 }
 var _CLIENT_NAV_RENDER_CTX_KEY = Symbol.for("vinext.clientNavigationRenderContext");
 function getClientNavigationRenderContext() {
@@ -1274,6 +1307,16 @@ function usePathname() {
 	const pathname = import_react.useSyncExternalStore(subscribeToNavigation, getPathnameSnapshot, () => _getServerContext()?.pathname ?? "/");
 	if (renderSnapshot && (getClientNavigationState()?.navigationSnapshotActiveCount ?? 0) > 0) return renderSnapshot.pathname;
 	return pathname;
+}
+/**
+* Returns the current search params as a read-only URLSearchParams.
+*/
+function useSearchParams() {
+	if (isServer) return getServerSearchParamsSnapshot();
+	const renderSnapshot = useClientNavigationRenderSnapshot();
+	const searchParams = import_react.useSyncExternalStore(subscribeToNavigation, getSearchParamsSnapshot, getServerSearchParamsSnapshot);
+	if (renderSnapshot && (getClientNavigationState()?.navigationSnapshotActiveCount ?? 0) > 0) return renderSnapshot.searchParams;
+	return searchParams;
 }
 /**
 * Check if a href is an external URL (any URL scheme per RFC 3986, or protocol-relative).
@@ -11629,13 +11672,13 @@ function createFromReadableStream(stream, options = {}) {
 //#region \0virtual:vite-rsc/client-references
 var client_references_default = {
 	"15c18cfaeeff": async () => {
-		const m = await import("./assets/layout-segment-context-Bfkypdv1.js");
+		const m = await import("./assets/layout-segment-context-9lSeTjn6.js");
 		return { get "LayoutSegmentProvider"() {
 			return m["LayoutSegmentProvider"];
 		} };
 	},
 	"593f344dc510": async () => {
-		const m = await import("./assets/error-boundary-Cih6hSsz.js");
+		const m = await import("./assets/error-boundary-Bm_NDwee.js");
 		return {
 			get "ErrorBoundary"() {
 				return m["ErrorBoundary"];
@@ -11655,7 +11698,7 @@ var client_references_default = {
 		};
 	},
 	"8b3a3dc47f25": async () => {
-		const m = await import("./assets/member-account-DAcHbJiB.js");
+		const m = await import("./assets/member-account-Clpjf5LT.js");
 		return { get "MemberAccount"() {
 			return m["MemberAccount"];
 		} };
@@ -11675,31 +11718,37 @@ var client_references_default = {
 		};
 	},
 	"9fb86276be8f": async () => {
-		const m = await import("./assets/image-JnJlK3YQ.js");
+		const m = await import("./assets/image-CfFYFD1s.js");
 		return { get "default"() {
 			return m["default"];
 		} };
 	},
+	"a3b6bfa0c6f7": async () => {
+		const m = await import("./assets/subscribe-panel--JIDiI9t.js");
+		return { get "SubscribePanel"() {
+			return m["SubscribePanel"];
+		} };
+	},
 	"b49ea5cf04c0": async () => {
-		const m = await import("./assets/page-UNqBY7yr.js");
+		const m = await import("./assets/page-OuBLc6AQ.js");
 		return { get "default"() {
 			return m["default"];
 		} };
 	},
 	"c2747888630f": async () => {
-		const m = await import("./assets/link-C7AACWvc.js");
+		const m = await import("./assets/link-CIvnmgxx.js");
 		return { get "default"() {
 			return m["default"];
 		} };
 	},
 	"c55f876e4773": async () => {
-		const m = await import("./assets/auth-gate-B-KnVpbG.js");
+		const m = await import("./assets/auth-gate-BETXoIvT.js");
 		return { get "AuthGate"() {
 			return m["AuthGate"];
 		} };
 	},
 	"daa03a9a6fed": async () => {
-		const m = await import("./assets/page-RH4BACPX.js");
+		const m = await import("./assets/page-CUoh7bzL.js");
 		return { get "default"() {
 			return m["default"];
 		} };
@@ -11867,4 +11916,4 @@ var app_ssr_entry_default = { async fetch(request) {
 	return new Response(String(result), { status: 200 });
 } };
 //#endregion
-export { __commonJSMin as C, stripBasePath as S, isDangerousScheme as _, getPrefetchedUrls as a, VINEXT_MOUNTED_SLOTS_HEADER as b, usePathname as c, createRscRequestUrl as d, app_ssr_entry_default as default, isHashOnlyBrowserUrlChange as f, withBasePath as g, toSameOriginAppPath as h, handleSsr, getMountedSlotsHeader as i, useRouter as l, toBrowserNavigationHref as m, getCurrentInterceptionContext as n, navigateClientSide as o, resolveRelativeHref as p, getLayoutSegmentContext as r, prefetchRscResponse as s, require_jsx_runtime as t, createRscRequestHeaders as u, AppElementsWire as v, __toESM as w, hasBasePath as x, require_react as y };
+export { stripBasePath as C, hasBasePath as S, __toESM as T, withBasePath as _, getPrefetchedUrls as a, require_react as b, usePathname as c, createRscRequestHeaders as d, app_ssr_entry_default as default, createRscRequestUrl as f, toSameOriginAppPath as g, toBrowserNavigationHref as h, handleSsr, getMountedSlotsHeader as i, useRouter as l, resolveRelativeHref as m, getCurrentInterceptionContext as n, navigateClientSide as o, isHashOnlyBrowserUrlChange as p, getLayoutSegmentContext as r, prefetchRscResponse as s, require_jsx_runtime as t, useSearchParams as u, isDangerousScheme as v, __commonJSMin as w, VINEXT_MOUNTED_SLOTS_HEADER as x, AppElementsWire as y };

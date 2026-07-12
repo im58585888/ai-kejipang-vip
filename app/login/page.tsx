@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabase";
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  useEffect(() => { supabase.auth.getSession().then(({ data }) => { if (data.session) window.location.replace("/reports"); }); }, []);
+  useEffect(() => { supabase.auth.getSession().then(({ data }) => { if (data.session) window.location.replace(new URLSearchParams(window.location.search).get("next") || "/reports"); }); }, []);
 
   async function signInWithGoogle() {
     setLoading(true); setError("");

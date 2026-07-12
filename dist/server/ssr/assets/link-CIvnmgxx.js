@@ -1,4 +1,4 @@
-import { S as stripBasePath, _ as isDangerousScheme, a as getPrefetchedUrls, b as VINEXT_MOUNTED_SLOTS_HEADER, d as createRscRequestUrl, g as withBasePath$1, h as toSameOriginAppPath, i as getMountedSlotsHeader, m as toBrowserNavigationHref, n as getCurrentInterceptionContext, o as navigateClientSide, p as resolveRelativeHref, s as prefetchRscResponse, t as require_jsx_runtime, u as createRscRequestHeaders, v as AppElementsWire, w as __toESM, x as hasBasePath, y as require_react } from "../index.js";
+import { C as stripBasePath, S as hasBasePath, T as __toESM, _ as withBasePath$1, a as getPrefetchedUrls, b as require_react, d as createRscRequestHeaders, f as createRscRequestUrl, g as toSameOriginAppPath, h as toBrowserNavigationHref, i as getMountedSlotsHeader, m as resolveRelativeHref, n as getCurrentInterceptionContext, o as navigateClientSide, s as prefetchRscResponse, t as require_jsx_runtime, v as isDangerousScheme, x as VINEXT_MOUNTED_SLOTS_HEADER, y as AppElementsWire } from "../index.js";
 //#region node_modules/vinext/dist/routing/utils.js
 var PATH_DELIMITER_REGEX = /([/#?\\]|%(2f|23|3f|5c))/gi;
 function encodePathDelimiters(segment) {
@@ -624,7 +624,7 @@ var Link = (0, import_react.forwardRef)(function Link({ href, as, replace = fals
 			});
 			return;
 		} else try {
-			const Router = (await import("./router-CGX1SHQ9.js")).default;
+			const Router = (await import("./router-D0QEvO03.js")).default;
 			if (replace) await Router.replace(absoluteHref, void 0, { scroll });
 			else await Router.push(absoluteHref, void 0, { scroll });
 		} catch {

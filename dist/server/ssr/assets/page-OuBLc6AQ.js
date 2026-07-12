@@ -1,8 +1,9 @@
-import { t as require_jsx_runtime, w as __toESM, y as require_react } from "../index.js";
-import Link from "./link-C7AACWvc.js";
-import { t as createLucideIcon } from "./createLucideIcon-Nus6JIEk.js";
-import { t as supabase } from "./supabase-B1rkkxKM.js";
-import Image from "./image-JnJlK3YQ.js";
+import { T as __toESM, b as require_react, t as require_jsx_runtime } from "../index.js";
+import Link from "./link-CIvnmgxx.js";
+import { t as createLucideIcon } from "./createLucideIcon-CM9QDcEr.js";
+import { t as supabase } from "./supabase-BbqHW971.js";
+import Image from "./image-CfFYFD1s.js";
+import { n as ArrowRight, t as ShieldCheck } from "./shield-check-DhSgR02W.js";
 //#region node_modules/lucide-react/dist/esm/icons/arrow-left.js
 var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
 /**
@@ -19,36 +20,6 @@ var ArrowLeft = createLucideIcon("ArrowLeft", [["path", {
 	key: "x3x0zl"
 }]]);
 //#endregion
-//#region node_modules/lucide-react/dist/esm/icons/arrow-right.js
-/**
-* @license lucide-react v0.468.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
-var ArrowRight = createLucideIcon("ArrowRight", [["path", {
-	d: "M5 12h14",
-	key: "1ays0h"
-}], ["path", {
-	d: "m12 5 7 7-7 7",
-	key: "xquz4c"
-}]]);
-//#endregion
-//#region node_modules/lucide-react/dist/esm/icons/shield-check.js
-/**
-* @license lucide-react v0.468.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
-var ShieldCheck = createLucideIcon("ShieldCheck", [["path", {
-	d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
-	key: "oel41y"
-}], ["path", {
-	d: "m9 12 2 2 4-4",
-	key: "dzmm74"
-}]]);
-//#endregion
 //#region app/login/page.tsx
 var import_jsx_runtime = require_jsx_runtime();
 function LoginPage() {
@@ -56,7 +27,7 @@ function LoginPage() {
 	const [error, setError] = (0, import_react.useState)("");
 	(0, import_react.useEffect)(() => {
 		supabase.auth.getSession().then(({ data }) => {
-			if (data.session) window.location.replace("/reports");
+			if (data.session) window.location.replace(new URLSearchParams(window.location.search).get("next") || "/reports");
 		});
 	}, []);
 	async function signInWithGoogle() {

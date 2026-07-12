@@ -112,8 +112,8 @@ export default function Home() {
             <li><Check size={18} /> 每週五技術型態與 CC 報告</li>
             <li><Check size={18} /> PDF 下載與會員專屬內容</li>
           </ul>
-          <Link href="/login" className="google-button"><span className="google-g">G</span> 使用 Google 帳號加入 <ArrowRight size={18} /></Link>
-          <small>使用 Google 安全登入；付款與訂閱啟用功能即將開放。</small>
+          <Link href="/login?next=/subscribe" className="google-button"><span className="google-g">G</span> 使用 Google 帳號加入 <ArrowRight size={18} /></Link>
+          <small>使用 Google 安全登入；信用卡付款由 Stripe 加密處理。</small>
         </div>
       </section>
       <SiteFooter />

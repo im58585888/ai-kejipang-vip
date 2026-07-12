@@ -1,7 +1,8 @@
-import { t as require_jsx_runtime, w as __toESM, y as require_react } from "../index.js";
-import { t as createLucideIcon } from "./createLucideIcon-Nus6JIEk.js";
-import { t as supabase } from "./supabase-B1rkkxKM.js";
-import Image from "./image-JnJlK3YQ.js";
+import { T as __toESM, b as require_react, t as require_jsx_runtime } from "../index.js";
+import { t as createLucideIcon } from "./createLucideIcon-CM9QDcEr.js";
+import { t as supabase } from "./supabase-BbqHW971.js";
+import Image from "./image-CfFYFD1s.js";
+import { t as CreditCard } from "./credit-card-Db6Be-ei.js";
 //#region node_modules/lucide-react/dist/esm/icons/log-out.js
 var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
 /**
@@ -41,6 +42,15 @@ function MemberAccount() {
 		await supabase.auth.signOut();
 		window.location.assign("/");
 	}
+	async function manageSubscription() {
+		const { data } = await supabase.auth.getSession();
+		if (!data.session) return;
+		const result = await (await fetch("/api/stripe/portal", {
+			method: "POST",
+			headers: { Authorization: `Bearer ${data.session.access_token}` }
+		})).json();
+		if (result.url) window.location.assign(result.url);
+	}
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "member-account",
 		children: [
@@ -56,6 +66,11 @@ function MemberAccount() {
 				children: "VIP"
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: name }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: user?.email ?? "會員帳戶" })] }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+				onClick: manageSubscription,
+				"aria-label": "管理訂閱",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { size: 17 }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "訂閱" })]
+			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 				onClick: signOut,
 				"aria-label": "登出",

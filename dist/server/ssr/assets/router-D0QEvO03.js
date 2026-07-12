@@ -1,5 +1,5 @@
-import { S as stripBasePath, f as isHashOnlyBrowserUrlChange, h as toSameOriginAppPath, m as toBrowserNavigationHref, w as __toESM, y as require_react } from "../index.js";
-import { a as getDomainLocaleUrl, i as addLocalePrefix, n as appendSearchParamsToUrl, r as urlQueryToSearchParams, t as addQueryParam } from "./link-C7AACWvc.js";
+import { C as stripBasePath, T as __toESM, b as require_react, g as toSameOriginAppPath, h as toBrowserNavigationHref, p as isHashOnlyBrowserUrlChange } from "../index.js";
+import { a as getDomainLocaleUrl, i as addLocalePrefix, n as appendSearchParamsToUrl, r as urlQueryToSearchParams, t as addQueryParam } from "./link-CIvnmgxx.js";
 //#region node_modules/vinext/dist/shims/internal/router-context.js
 var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
 /**
@@ -353,7 +353,7 @@ async function navigateClient(url) {
 		assertStillCurrent();
 		const PageComponent = pageModule.default;
 		if (!PageComponent) scheduleHardNavigationAndThrow(url, "Navigation failed: page module has no default export");
-		const React = (await import("../index.js").then((n) => /* @__PURE__ */ __toESM(n.y(), 1))).default;
+		const React = (await import("../index.js").then((n) => /* @__PURE__ */ __toESM(n.b(), 1))).default;
 		assertStillCurrent();
 		let AppComponent = window.__VINEXT_APP__;
 		const appModuleUrl = nextData.__vinext?.appModuleUrl;
