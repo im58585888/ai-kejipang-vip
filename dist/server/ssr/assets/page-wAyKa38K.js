@@ -26,8 +26,10 @@ function LoginPage() {
 	const [loading, setLoading] = (0, import_react.useState)(false);
 	const [error, setError] = (0, import_react.useState)("");
 	(0, import_react.useEffect)(() => {
-		supabase.auth.getSession().then(({ data }) => {
-			if (data.session) window.location.replace(new URLSearchParams(window.location.search).get("next") || "/reports");
+		supabase.auth.getSession().then(async ({ data }) => {
+			if (!data.session) return;
+			if ((await fetch("/api/admin/access", { headers: { Authorization: `Bearer ${data.session.access_token}` } })).ok) return window.location.replace("/admin");
+			window.location.replace(new URLSearchParams(window.location.search).get("next") || "/reports");
 		});
 	}, []);
 	async function signInWithGoogle() {

@@ -9,7 +9,12 @@ import { supabase } from "@/lib/supabase";
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  useEffect(() => { supabase.auth.getSession().then(({ data }) => { if (data.session) window.location.replace(new URLSearchParams(window.location.search).get("next") || "/reports"); }); }, []);
+  useEffect(() => { supabase.auth.getSession().then(async ({ data }) => {
+    if (!data.session) return;
+    const response = await fetch("/api/admin/access", { headers: { Authorization: `Bearer ${data.session.access_token}` } });
+    if (response.ok) return window.location.replace("/admin");
+    window.location.replace(new URLSearchParams(window.location.search).get("next") || "/reports");
+  }); }, []);
 
   async function signInWithGoogle() {
     setLoading(true); setError("");
