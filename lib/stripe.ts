@@ -3,6 +3,12 @@ const STRIPE_API = "https://api.stripe.com/v1";
 type StripeList<T> = { data: T[] };
 type StripeCustomer = { id: string; email: string | null };
 type StripeSubscription = { id: string; status: string; current_period_end?: number };
+export type StripeAdminSubscription = StripeSubscription & {
+  customer: string | { id: string; email?: string | null; name?: string | null };
+  canceled_at?: number | null;
+  cancel_at_period_end?: boolean;
+  items?: { data: Array<{ current_period_end?: number; price?: { unit_amount?: number | null; recurring?: { interval?: string; interval_count?: number } | null } }> };
+};
 
 function secretKey() {
   const key = process.env.STRIPE_SECRET_KEY;
@@ -39,4 +45,8 @@ export async function getSubscription(customerId: string) {
 
 export function isEntitled(status?: string | null) {
   return status === "active" || status === "trialing";
+}
+
+export async function getAdminSubscriptions() {
+  return stripeRequest<StripeList<StripeAdminSubscription>>("/subscriptions?status=all&limit=100&expand[]=data.customer&expand[]=data.items.data.price");
 }

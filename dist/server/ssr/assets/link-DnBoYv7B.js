@@ -624,7 +624,7 @@ var Link = (0, import_react.forwardRef)(function Link({ href, as, replace = fals
 			});
 			return;
 		} else try {
-			const Router = (await import("./router-D0QEvO03.js")).default;
+			const Router = (await import("./router-OHHBztTS.js")).default;
 			if (replace) await Router.replace(absoluteHref, void 0, { scroll });
 			else await Router.push(absoluteHref, void 0, { scroll });
 		} catch {

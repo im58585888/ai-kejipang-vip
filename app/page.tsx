@@ -61,7 +61,7 @@ export default function Home() {
           <div className="report-tags"><span>Tesla</span><span>SpaceX</span><span>13F</span><span>選擇權</span></div>
           <div className="report-links">
             <Link href="/reports/member-report-001" className="underlined-link">閱讀線上版本 <ArrowRight size={18} /></Link>
-            <a href="/downloads/AI科技胖會員研究報告_001_2026-07-05.pdf" download className="sample-download"><Download size={17} /> 免費下載 Sample PDF</a>
+            <a href="/api/downloads/member-report-001" className="sample-download"><Download size={17} /> 免費下載 Sample PDF</a>
           </div>
         </div>
       </section>

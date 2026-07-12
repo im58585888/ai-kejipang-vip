@@ -1,5 +1,5 @@
 import { T as __toESM, b as require_react, t as require_jsx_runtime } from "../index.js";
-import Link from "./link-CIvnmgxx.js";
+import Link from "./link-DnBoYv7B.js";
 import { t as Check } from "./check-Cuh-VUwe.js";
 import { t as supabase } from "./supabase-BbqHW971.js";
 //#region app/auth/callback/page.tsx

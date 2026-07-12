@@ -1,5 +1,5 @@
 import { T as __toESM, b as require_react, t as require_jsx_runtime } from "../index.js";
-import Link from "./link-CIvnmgxx.js";
+import Link from "./link-DnBoYv7B.js";
 import { t as createLucideIcon } from "./createLucideIcon-CM9QDcEr.js";
 import { t as supabase } from "./supabase-BbqHW971.js";
 import Image from "./image-CfFYFD1s.js";

@@ -11671,14 +11671,20 @@ function createFromReadableStream(stream, options = {}) {
 //#endregion
 //#region \0virtual:vite-rsc/client-references
 var client_references_default = {
+	"0d638075321a": async () => {
+		const m = await import("./assets/analytics-tracker-CzwZSkUw.js");
+		return { get "AnalyticsTracker"() {
+			return m["AnalyticsTracker"];
+		} };
+	},
 	"15c18cfaeeff": async () => {
-		const m = await import("./assets/layout-segment-context-9lSeTjn6.js");
+		const m = await import("./assets/layout-segment-context-B0zaQmYp.js");
 		return { get "LayoutSegmentProvider"() {
 			return m["LayoutSegmentProvider"];
 		} };
 	},
 	"593f344dc510": async () => {
-		const m = await import("./assets/error-boundary-Bm_NDwee.js");
+		const m = await import("./assets/error-boundary-GGQw4nf8.js");
 		return {
 			get "ErrorBoundary"() {
 				return m["ErrorBoundary"];
@@ -11698,7 +11704,7 @@ var client_references_default = {
 		};
 	},
 	"8b3a3dc47f25": async () => {
-		const m = await import("./assets/member-account-Clpjf5LT.js");
+		const m = await import("./assets/member-account-BJe2Nclg.js");
 		return { get "MemberAccount"() {
 			return m["MemberAccount"];
 		} };
@@ -11724,33 +11730,39 @@ var client_references_default = {
 		} };
 	},
 	"a3b6bfa0c6f7": async () => {
-		const m = await import("./assets/subscribe-panel--JIDiI9t.js");
+		const m = await import("./assets/subscribe-panel-DT2gRzBy.js");
 		return { get "SubscribePanel"() {
 			return m["SubscribePanel"];
 		} };
 	},
 	"b49ea5cf04c0": async () => {
-		const m = await import("./assets/page-OuBLc6AQ.js");
+		const m = await import("./assets/page-spvo7tZ6.js");
 		return { get "default"() {
 			return m["default"];
 		} };
 	},
 	"c2747888630f": async () => {
-		const m = await import("./assets/link-CIvnmgxx.js");
+		const m = await import("./assets/link-DnBoYv7B.js");
 		return { get "default"() {
 			return m["default"];
 		} };
 	},
 	"c55f876e4773": async () => {
-		const m = await import("./assets/auth-gate-BETXoIvT.js");
+		const m = await import("./assets/auth-gate-DNsM6vsi.js");
 		return { get "AuthGate"() {
 			return m["AuthGate"];
 		} };
 	},
 	"daa03a9a6fed": async () => {
-		const m = await import("./assets/page-CUoh7bzL.js");
+		const m = await import("./assets/page-BeeD-woh.js");
 		return { get "default"() {
 			return m["default"];
+		} };
+	},
+	"db2f0ab6401a": async () => {
+		const m = await import("./assets/admin-dashboard-BWH7dPow.js");
+		return { get "AdminDashboard"() {
+			return m["AdminDashboard"];
 		} };
 	}
 };
