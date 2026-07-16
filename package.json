@@ -6,7 +6,8 @@
     "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
     "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "report:upload": "node scripts/upload-member-report.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.2",

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Download, FileText, RefreshCw, Users } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { AdminReportUploader } from "@/components/admin-report-uploader";
 
 type Overview = {
   metrics: { activeMembers: number; mrr: number; downloads: number; visitors: number; views: number; canceled30d: number };
@@ -35,9 +36,9 @@ export function AdminDashboard() {
 
   const maxViews = Math.max(...data.daily.map((item) => item.views), 1);
   return <main className="admin-page">
-    <aside className="admin-sidebar"><div className="admin-brand"><span />AI 科技胖 <b>VIP</b></div><nav><a className="active">營運總覽</a><a href="#members">會員管理</a><a href="#traffic">流量分析</a><a href="#downloads">下載紀錄</a></nav><div className="admin-user"><span>胖</span><div><b>網站管理員</b><small>Stripe 正式資料</small></div></div></aside>
+    <aside className="admin-sidebar"><div className="admin-brand"><span />AI 科技胖 <b>VIP</b></div><nav><a className="active">營運總覽</a><a className="member-access-link" href="/reports" target="_blank" rel="noreferrer"><span>Member Access</span><ArrowUpRight size={14} /></a><a href="#report-upload">上传报告</a><a href="#members">會員管理</a><a href="#traffic">流量分析</a><a href="#downloads">下載紀錄</a></nav><div className="admin-user"><span>胖</span><div><b>網站管理員</b><small>Stripe 正式資料</small></div></div></aside>
     <section className="admin-workspace">
-      <header className="admin-top"><div><h1>營運總覽</h1><p>更新時間 {new Date(data.generatedAt).toLocaleString("zh-TW")}</p></div><button className="admin-refresh" onClick={load}><RefreshCw size={17}/>重新整理</button></header>
+      <header className="admin-top"><div><h1>營運總覽</h1><p>更新時間 {new Date(data.generatedAt).toLocaleString("zh-TW")}</p></div><div><a className="admin-new" href="#report-upload">上传报告</a><button className="admin-refresh" onClick={load}><RefreshCw size={17}/>重新整理</button></div></header>
       <div className="admin-metrics">
         <div><span>有效付費會員</span><strong>{data.metrics.activeMembers.toLocaleString()}</strong><small className="up"><ArrowUpRight size={14}/> Stripe 即時狀態</small></div>
         <div><span>每月經常性收入</span><strong>US${data.metrics.mrr.toFixed(2)}</strong><small>依有效訂閱換算</small></div>
@@ -49,6 +50,7 @@ export function AdminDashboard() {
         <section><div className="admin-section-title"><h2>熱門頁面</h2><span>{data.metrics.views} 次瀏覽</span></div>{data.popular.length ? data.popular.map((item,i)=><div className="popular-row" key={item.path}><span>{i+1}</span><div><b>{item.path}</b><small>真實頁面瀏覽</small></div><strong>{item.views}</strong></div>) : <p className="admin-empty">尚無頁面瀏覽資料</p>}</section>
         <section><div className="admin-section-title"><h2>營運狀態</h2></div><div className="activity-row"><Users/><p><b>{data.metrics.activeMembers} 位有效會員</b><span>来自 Stripe 正式訂閱</span></p></div><div className="activity-row"><FileText/><p><b>{data.metrics.views} 次頁面瀏覽</b><span>自本功能上線後開始計算</span></p></div><div className="activity-row"><Download/><p><b>{data.metrics.downloads} 次報告下載</b><span>透過網站下載連結追蹤</span></p></div></section>
       </div>
+      <AdminReportUploader />
       <section className="admin-members" id="members"><div className="admin-section-title"><div><h2>付費會員管理</h2><p>来自 Stripe；尚未付款的 Google 註冊者不包含在此表</p></div><span>{data.members.length} 筆訂閱</span></div><div className="admin-member-table"><div className="admin-member-row admin-member-head"><span>會員</span><span>狀態</span><span>本期結束</span></div>{data.members.map((member)=><div className="admin-member-row" key={member.id}><span><b>{member.name}</b><small>{member.email}</small></span><span><i className={`status-dot status-${member.status}`}/>{member.cancelAtPeriodEnd ? "已排程取消" : statusText[member.status] || member.status}</span><span>{member.periodEnd ? new Date(member.periodEnd * 1000).toLocaleDateString("zh-TW") : "—"}</span></div>)}</div></section>
     </section>
   </main>;

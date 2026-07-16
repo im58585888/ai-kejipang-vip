@@ -1,8 +1,12 @@
 import { requireUser } from "@/lib/server-auth";
 
+export function isAdminEmail(email: string) {
+  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+  return Boolean(adminEmail && email.trim().toLowerCase() === adminEmail);
+}
+
 export async function requireAdmin(request: Request) {
   const user = await requireUser(request);
-  const adminEmail = process.env.ADMIN_EMAIL?.toLowerCase();
-  if (!adminEmail || user.email.toLowerCase() !== adminEmail) throw new Response("Forbidden", { status: 403 });
+  if (!isAdminEmail(user.email)) throw new Response("Forbidden", { status: 403 });
   return user;
 }

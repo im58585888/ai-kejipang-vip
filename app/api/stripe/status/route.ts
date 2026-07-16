@@ -1,9 +1,19 @@
 import { requireUser } from "@/lib/server-auth";
+import { isAdminEmail } from "@/lib/admin-auth";
 import { findOrCreateCustomer, getSubscription, isEntitled } from "@/lib/stripe";
 
 export async function GET(request: Request) {
   try {
     const user = await requireUser(request);
+    if (isAdminEmail(user.email)) {
+      return Response.json({
+        configured: Boolean(process.env.STRIPE_SECRET_KEY),
+        active: true,
+        status: "admin_preview",
+        currentPeriodEnd: null,
+        accessSource: "admin",
+      });
+    }
     if (!process.env.STRIPE_SECRET_KEY) return Response.json({ configured: false, active: false });
     const customer = await findOrCreateCustomer(user);
     const subscription = await getSubscription(customer.id);
