@@ -62,7 +62,7 @@ export function ReportLibrary({ fallbackReports }: { fallbackReports: LibraryRep
           <div className="report-quick-actions"><button aria-label="收藏"><Bookmark size={19} /></button><button aria-label="下載"><Download size={19} /></button></div>
         </article>
       ))}
-      {!reports.length && <p className="library-empty">找不到符合条件的报告。</p>}
+      {!reports.length && <p className="library-empty">{query.trim() ? "找不到符合條件的報告。" : "目前尚無報告，新報告上線後會顯示在這裡。"}</p>}
     </section>
   </>;
 }

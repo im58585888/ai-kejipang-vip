@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, BarChart3, Check, Download, FileText, LineChart, Play, Sparkles, Youtube } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BarChart3, Check, FileText, LineChart, Play, Sparkles, Youtube } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -55,25 +55,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="featured-report">
-        <div className="report-visual">
-          <span className="report-kicker">會員研究報告</span>
-          <div className="report-number">001</div>
-          <div className="signal-line"><span /><span /><span /><span /><span /></div>
-          <div className="report-symbols">TSLA · SPCX · HOOD · VGT</div>
-        </div>
-        <div className="report-copy">
-          <span className="section-label">本週精選 · 2026.07.05</span>
-          <h2>好消息之後，<br />市場為什麼反而賣出？</h2>
-          <p>Tesla 交付數字大幅超預期，股價卻重挫。本期從機構持股、SpaceX 選擇權與 AI 資金流向，拆解市場真正正在定價的風險。</p>
-          <div className="report-tags"><span>Tesla</span><span>SpaceX</span><span>13F</span><span>選擇權</span></div>
-          <div className="report-links">
-            <Link href="/reports/member-report-001" className="underlined-link">閱讀線上版本 <ArrowRight size={18} /></Link>
-            <a href="/api/downloads/member-report-001" className="sample-download"><Download size={17} /> 免費下載 Sample PDF</a>
-          </div>
         </div>
       </section>
 

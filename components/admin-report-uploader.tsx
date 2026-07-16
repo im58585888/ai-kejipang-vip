@@ -78,9 +78,9 @@ export function AdminReportUploader() {
         <span>管理员 / Codex 自动化共用发布流程</span>
       </div>
       <form className="report-upload-form" onSubmit={uploadReport}>
-        <label className="upload-field upload-title"><span>报告标题 *</span><input name="title" required placeholder="例如：每週大戶雷達：誰在買，誰在賣？" /></label>
+        <label className="upload-field upload-title"><span>报告标题 *</span><input name="title" required placeholder="輸入新報告標題" /></label>
         <label className="upload-field"><span>报告编号</span><input name="reportNo" placeholder="003" /></label>
-        <label className="upload-field"><span>网址 slug</span><input name="slug" placeholder="member-report-003" pattern="[A-Za-z0-9-]*" /></label>
+        <label className="upload-field"><span>网址 slug</span><input name="slug" placeholder="report-2026-07-01" pattern="[A-Za-z0-9-]*" /></label>
         <label className="upload-field"><span>报告类别</span><input name="type" placeholder="每週市場與大戶動向" /></label>
         <label className="upload-field"><span>发布日期 *</span><input name="publishedAt" type="date" required defaultValue={new Date().toISOString().slice(0, 10)} /></label>
         <label className="upload-field"><span>阅读时间</span><input name="readMinutes" type="number" min="1" max="180" defaultValue="12" /></label>
