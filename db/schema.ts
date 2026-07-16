@@ -37,3 +37,15 @@ export const memberReports = sqliteTable("member_reports", {
   index("member_reports_published_idx").on(table.publishedAt),
   index("member_reports_status_idx").on(table.status),
 ]);
+
+export const reportUploadTokens = sqliteTable("report_upload_tokens", {
+  id: text("id").primaryKey(),
+  tokenHash: text("token_hash").notNull(),
+  label: text("label").notNull().default("Codex automation"),
+  createdBy: text("created_by").notNull(),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  lastUsedAt: text("last_used_at"),
+  revokedAt: text("revoked_at"),
+}, (table) => [
+  uniqueIndex("report_upload_tokens_hash_idx").on(table.tokenHash),
+]);

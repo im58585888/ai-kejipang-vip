@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { CheckCircle2, FileText, UploadCloud } from "lucide-react";
+import { CheckCircle2, Copy, FileText, KeyRound, UploadCloud } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 type UploadResult = {
@@ -13,6 +13,8 @@ export function AdminReportUploader() {
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
+  const [automationToken, setAutomationToken] = useState("");
+  const [creatingToken, setCreatingToken] = useState(false);
 
   async function uploadReport(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,6 +46,26 @@ export function AdminReportUploader() {
     setSuccess(true);
     setMessage(`「${result.report?.title || "新报告"}」已发布到 Member Access。`);
     form.reset();
+  }
+
+  async function createAutomationToken() {
+    setCreatingToken(true);
+    const { data } = await supabase.auth.getSession();
+    if (!data.session) return window.location.replace("/login?next=/admin");
+    const response = await fetch("/api/admin/report-token", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${data.session.access_token}` },
+    });
+    const result = await response.json() as { token?: string; error?: string };
+    setCreatingToken(false);
+    if (!response.ok || !result.token) return setMessage(result.error || "无法建立 Codex 上传 Token。");
+    setAutomationToken(result.token);
+  }
+
+  async function copyToken() {
+    await navigator.clipboard.writeText(automationToken);
+    setMessage("Codex 上传 Token 已复制。");
+    setSuccess(true);
   }
 
   return (
@@ -80,6 +102,11 @@ export function AdminReportUploader() {
         </button>
       </form>
       {message && <div className={`upload-message ${success ? "success" : "error"}`}>{success && <CheckCircle2 size={17} />}{message}</div>}
+      <div className="automation-token-panel">
+        <div><KeyRound size={18} /><p><b>Codex 自动化上传</b><span>生成一次性显示的专属 Token，贴到自动化的 CODEX_UPLOAD_TOKEN 环境变量。</span></p></div>
+        {!automationToken ? <button onClick={createAutomationToken} disabled={creatingToken}>{creatingToken ? "正在生成…" : "生成上传 Token"}</button> :
+          <div className="automation-token-value"><code>{automationToken}</code><button onClick={copyToken} aria-label="复制 Token"><Copy size={16} /></button></div>}
+      </div>
     </section>
   );
 }

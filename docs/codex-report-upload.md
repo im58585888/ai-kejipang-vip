@@ -5,7 +5,7 @@
 ## 自动化所需环境变量
 
 - `MEMBER_SITE_URL`：会员网站网址
-- `CODEX_UPLOAD_TOKEN`：与网站运行环境相同的长随机密钥
+- `CODEX_UPLOAD_TOKEN`：在管理页面「上传会员报告」区块生成的专属 Token
 
 ## 报告 manifest
 
@@ -32,3 +32,5 @@ npm run report:upload -- ./report-manifest.json
 ```
 
 相同 `slug` 再次上传会更新原报告；新 `slug` 会建立新报告。
+
+Token 只会在建立时显示一次。遗失时请回到管理页面重新生成。
