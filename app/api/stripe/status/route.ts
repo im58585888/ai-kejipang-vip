@@ -1,5 +1,6 @@
 import { requireUser } from "@/lib/server-auth";
 import { isAdminEmail } from "@/lib/admin-auth";
+import { isManualMemberEmail } from "@/lib/manual-members";
 import { findOrCreateCustomer, getSubscription, isEntitled } from "@/lib/stripe";
 
 export async function GET(request: Request) {
@@ -12,6 +13,15 @@ export async function GET(request: Request) {
         status: "admin_preview",
         currentPeriodEnd: null,
         accessSource: "admin",
+      });
+    }
+    if (isManualMemberEmail(user.email)) {
+      return Response.json({
+        configured: true,
+        active: true,
+        status: "manual_paid",
+        currentPeriodEnd: null,
+        accessSource: "manual_member",
       });
     }
     if (!process.env.STRIPE_SECRET_KEY) return Response.json({ configured: false, active: false });

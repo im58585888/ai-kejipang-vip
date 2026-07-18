@@ -2,12 +2,14 @@ import { and, eq, isNull } from "drizzle-orm";
 import { getDb } from "@/db";
 import { reportUploadTokens } from "@/db/schema";
 import { isAdminEmail } from "@/lib/admin-auth";
+import { isManualMemberEmail } from "@/lib/manual-members";
 import { requireUser } from "@/lib/server-auth";
 import { findOrCreateCustomer, getSubscription, isEntitled } from "@/lib/stripe";
 
 export async function requireMemberAccess(request: Request) {
   const user = await requireUser(request);
   if (isAdminEmail(user.email)) return { user, accessSource: "admin" as const };
+  if (isManualMemberEmail(user.email)) return { user, accessSource: "manual_member" as const };
   if (!process.env.STRIPE_SECRET_KEY) throw new Response("Subscription required", { status: 403 });
 
   const customer = await findOrCreateCustomer(user);
